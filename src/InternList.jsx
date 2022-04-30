@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import styles from './InternList.module.css'
+import { ReactComponent as Vector } from './assets/vector.svg';
 
 const InternList = () => {
 
@@ -15,8 +17,13 @@ const InternList = () => {
     }, []);
 
     return (
-        <div>
-            {interns.map(u => (<div key={u.id}>{u.name} <NavLink to={`/interns/${u.id}`}>Edit</NavLink></div>))}
+        <div className={styles.internList}>
+            <div className={styles.header}>
+                <h1 className={styles.header__content}>Participants</h1>
+            </div>
+            <ul className={styles.list}>
+                {interns.map(participant => (<li className={styles.list__participant} key={participant.id}><p className={styles.participant__name}>{participant.name}</p> <NavLink className={styles.participant__editLink} to={`/interns/${participant.id}`} ><Vector/><span className={styles.editLink__span}>Edit</span></NavLink></li>))}
+            </ul>
         </div>
     );
 };
