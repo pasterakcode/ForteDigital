@@ -1,9 +1,8 @@
-import styles from './App.module.css';
+import styles from "./App.module.css";
 import EditIntern from "./EditIntern";
 import InternList from "./InternList";
 import { Routes, Route } from "react-router-dom";
-import { ReactComponent as Logo } from './assets/logo.svg';
-
+import { ReactComponent as Logo } from "./assets/logo.svg";
 
 function App() {
   return (
@@ -12,8 +11,8 @@ function App() {
         <Logo />
       </div>
       <Routes>
-        <Route path="/interns/:id" exact element={<EditIntern />} />
-        <Route path="/" element={<InternList />} />
+        <Route path="/interns/:id" element={<EditIntern />} />
+        <Route path="/" exact element={<InternList />} />
       </Routes>
     </div>
   );
