@@ -5,8 +5,12 @@ import { NavLink } from "react-router-dom";
 import styles from "./EditIntern.module.css";
 import { ReactComponent as Arrow } from "./assets/arrow.svg";
 import EditForm from "./components/EditForm/EditForm";
+import LoadingState from "./components/stateComponent/LoadingState";
+import ErrorState from "./components/stateComponent/ErrorState";
 
 const EditIntern = () => {
+  const [loadingState, setLoadingState] = useState(true);
+  const [errorState, setErrorState] = useState({ state: false, message: "" });
   const { id } = useParams();
   const [values, setValues] = useState({
     name: "",
@@ -21,6 +25,7 @@ const EditIntern = () => {
       name: "name",
       type: "text",
       label: "Full name *",
+      placeholder: "Enter name",
       errorValidationInfo: "Enter a valid name!",
       pattern: "([a-zA-Z',.-]+( [a-zA-Z',.-]+)*){2,30}",
       required: true,
@@ -65,43 +70,32 @@ const EditIntern = () => {
   };
   const updateDatabase = async () => {
     try {
-      await axios.put(`http://localhost:3001/interns/${id}`, {
-        ...values,
-      });
+      await axios.put(`http://localhost:3001/interns/${id}`, { ...values });
       return true;
     } catch (error) {
-      alert("Something was wrong during update data. Please try again...");
+      setErrorState({ state: true, message: error.message });
     }
   };
   const handleSubmitForm = async (e) => {
     e.preventDefault();
     (await updateDatabase()) && redirectToHomePage();
   };
-  const fatchIntern = async () => {
-    try {
-      const response = await axios.get(`http://localhost:3001/interns/${id}`);
-      const intern = response.data;
-      return intern;
-    } catch (error) {
-      alert("Something was wrong during update data. Please try again...1");
-    }
-  }
   const handleFetchIntern = (intern) => {
     setValues({
-      name: intern.name,
-      email: intern.email,
-      internshipStart: intern.internshipStart.split("").slice(0, 10).join(""),
-      internshipEnd: intern.internshipEnd.split("").slice(0, 10).join(""),
+      name: intern.name ? intern.name : "",
+      email: intern.email ? intern.email : "",
+      internshipStart: intern.internshipStart? intern.internshipStart.split("").slice(0, 10).join("") : "",
+      internshipEnd: intern.internshipEnd? intern.internshipEnd.split("").slice(0, 10).join("") : "",
     });
   };
   useEffect(() => {
     const uploadData = async () => {
       try {
-        const intern = await fatchIntern();
-        handleFetchIntern(intern);
+        const response = await axios.get(`http://localhost:3001/interns/${id}`);
+        handleFetchIntern(response.data);
+        setLoadingState(false);
       } catch (error) {
-        alert("Something was wrong during update data. Please try again...");
-        redirectToHomePage();
+        setErrorState({ state: true, message: error.message });
       }
     };
     uploadData();
@@ -116,17 +110,23 @@ const EditIntern = () => {
       <div className={styles.header}>
         <h1 className={styles.header__content}>Edit</h1>
       </div>
-      <form onSubmit={handleSubmitForm}>
-        {inputs.map((input) => (
-          <EditForm
-            key={input.id}
-            {...input}
-            value={values[input.name]}
-            handleChangeInputValue={handleChangeInputValue}
-          />
-        ))}
-        <button type="submit">Submit</button>
-      </form>
+      {errorState.state ? (
+        <ErrorState message={errorState.message} />
+      ) : loadingState ? (
+        <LoadingState />
+      ) : (
+        <form onSubmit={handleSubmitForm}>
+          {inputs.map((input) => (
+            <EditForm
+              key={input.id}
+              {...input}
+              value={values[input.name]}
+              handleChangeInputValue={handleChangeInputValue}
+            />
+          ))}
+          <button type="submit">Submit</button>
+        </form>
+      )}
     </div>
   );
 };

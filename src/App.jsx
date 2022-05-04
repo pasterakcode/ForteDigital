@@ -7,9 +7,9 @@ import { ReactComponent as Logo } from "./assets/logo.svg";
 function App() {
   return (
     <div className={styles.app}>
-      <div className={styles.logoContainer}>
+      <a href="https://fortedigital.no/en"><div className={styles.logoContainer}>
         <Logo />
-      </div>
+      </div></a>
       <Routes>
         <Route path="/interns/:id" element={<EditIntern />} />
         <Route path="/" exact element={<InternList />} />

@@ -1,62 +1,86 @@
 .errorValidationInfo {
-    display: none;
-    color: red;
-    font-size: 12px;
-    font-weight: lighter;
+  display: none;
+  color: #a3270ced;
+  font-weight: lighter;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
 }
-input:invalid[focused='true'] {
-    border: 2px solid red;
-    border-radius: 5px;
+input:invalid[focused="true"] {
+  border: 2px solid #a3270c;
 }
-input:invalid[focused='true'] ~ span {
-    display: block;
-    position: absolute;
-    bottom: -20px;
-    font-size: 16px;
-    font-weight: bold;
+input:invalid[focused="true"] ~ span {
+  display: block;
+  position: absolute;
+  bottom: -25px;
+  font-size: 16px;
+  font-weight: 400;
+}
+input:focus {
+  background: #f7f7f7;
+  border: 2px solid #222222;
+  box-shadow: 0px 0px 0px 2px #d3f2ff;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: rgba(0, 0, 0, 0);
+  opacity: 1;
+  display: flex;
+  background: url(../../assets/calendar.png) no-repeat;
+  background-position: center;
+  width: 40px;
+  height: 100%;
+  margin: auto auto;
+  border-left: 2px solid #222222;
+  cursor: pointer;
+}
+input[type="text"] {
+  text-transform: capitalize;
 }
 .inputArea {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    margin-bottom: 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  margin-bottom: 40px;
 }
-.inputArea:nth-last-child(3){
-    padding-right: 8px;
+.inputArea:nth-last-child(3) {
+  padding-right: 8px;
 }
-.inputArea:nth-last-child(2){
-    padding-left: 8px;
+.inputArea:nth-last-child(2) {
+  padding-left: 8px;
 }
 .inputArea label {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 24px;
-    color: #222222;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #222222;
 }
 .inputArea input {
-    width: 100%;
-    height: 48px;
-    padding-left: 16px;
-    background: #F7F7F7;
-    border: 2px solid #222222;
-    box-sizing: border-box;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-    color: #222222;
+  width: 100%;
+  height: 48px;
+  padding-left: 6px;
+  background: #f7f7f7;
+  border: 2px solid #222222;
+  box-sizing: border-box;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #222222;
 }
-.inputArea input[type=date] {
-    font-family: 'Roboto', sans-serif;
-    text-transform: uppercase;
-    color: #555555;
+@media only screen and (min-width: 768px) {
+  .inputArea input {
+    padding-left: 16px;
+  }
+}
+.inputArea input[type="date"] {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  color: #555555;
 }
 .inputArea input:focus {
-    box-shadow: 0px 0px 0px 2px #D3F2FF;
-}
-.inputArea span {
-
+  box-shadow: 0px 0px 0px 2px #d3f2ff;
 }
