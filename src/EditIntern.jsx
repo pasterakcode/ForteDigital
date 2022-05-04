@@ -76,9 +76,18 @@ const EditIntern = () => {
       setErrorState({ state: true, message: error.message });
     }
   };
-  const handleSubmitForm = async (e) => {
+  const greenSignalAfterUpdateData = () => {
+    const editBox = document.querySelector('#btnSubmit');
+    editBox.style.background = "#508643";
+  }
+  const handleSubmitForm = e => {
     e.preventDefault();
-    (await updateDatabase()) && redirectToHomePage();
+    if (updateDatabase()){
+      greenSignalAfterUpdateData();
+      setTimeout(() => {
+        redirectToHomePage();
+      }, 300);
+    }
   };
   const handleFetchIntern = (intern) => {
     setValues({
@@ -102,7 +111,7 @@ const EditIntern = () => {
   }, [id]);
 
   return (
-    <div className={styles.participantEdit}>
+    <div className={styles.participantEdit} id="participantEdit">
       <NavLink className={styles.linkToBack} to={`/`}>
         <Arrow />
         <span className={styles.linkToBack__span}>Back to list</span>
@@ -124,7 +133,7 @@ const EditIntern = () => {
               handleChangeInputValue={handleChangeInputValue}
             />
           ))}
-          <button type="submit">Submit</button>
+          <button type="submit" id="btnSubmit">Submit</button>
         </form>
       )}
     </div>
