@@ -55,8 +55,13 @@ Since one of the main assumptions of the application is the storage and the abil
 
 -------------
 
+(unfortunately) To be repaired:
 
 
+The application double-renders the components when it starts up. This can be seen in devTools (Network section). This was the first time I had used react-router-dom and I will be looking for the cause of double rendering in its implementation.
+
+
+![image](https://user-images.githubusercontent.com/78322363/166877145-d802ebb4-ed8e-41b6-9a9a-26ea94d717d2.png)
 
 
 # Getting Started with Create React App
