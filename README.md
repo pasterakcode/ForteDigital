@@ -1,4 +1,4 @@
-** Principants list **
+** Participants list **
 
 
 ![image](https://user-images.githubusercontent.com/78322363/166842274-89449fab-7af8-4039-9800-9445c5b40589.png)
