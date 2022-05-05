@@ -33,7 +33,9 @@ Application will be open on address: http://localhost:3000/
 ----------------------
 Functionality
 
-Data from API: The application is prepared to handle an empty state, incomplete data and displays information about the ongoing data loading.
+Data from API: 
+
+The application is prepared to handle an empty state, incomplete data and displays information about the ongoing data loading.
 
 
 ![image](https://user-images.githubusercontent.com/78322363/166842428-9161dace-2eab-4a1a-9917-d229855b750c.png)
@@ -42,10 +44,19 @@ Data from API: The application is prepared to handle an empty state, incomplete 
 ![image](https://user-images.githubusercontent.com/78322363/166842378-3e8d00a1-383f-4f70-9820-1cb3bf715d47.png)
 
 
-Validation of inputs: Validation is carried out by the simplest method, using the built-in functionalities of the form / input object. 
+Validation of inputs: 
+
+Validation is carried out by the simplest method, using the built-in functionalities of the form / input object. 
 Input of type text is validate by regex. 
 Input type email has default validation. 
 Input data is validated on the basis of min and max parameters
+
+![image](https://user-images.githubusercontent.com/78322363/166877377-08b7d982-be98-49ed-ac15-a5be5224676c.png)
+
+Validation is performed for each "input" when it is exited, and globally when "submit" is pressed
+
+![image](https://user-images.githubusercontent.com/78322363/166877690-34bd82cb-6ec9-46d8-88c9-f301d53dd3aa.png)
+
 
 Since one of the main assumptions of the application is the storage and the ability to change the data regarding the start and end of the internship, I added my own functionality displaying the current date range after hovering over the "edit" button
 
